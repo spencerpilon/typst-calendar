@@ -37,15 +37,7 @@
         columns: (1fr,) * 7,
         rows: (0.4fr,) + 5 * (1fr,),
         inset: 0.8em,
-        table.header(
-          [Monday],
-          [Tuesday],
-          [Wednesday],
-          [Thursday],
-          [Friday],
-          [Saturday],
-          [Sunday],
-        ),
+        table.header([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday]),
         ..range(1, first_monday).map(empty_day => []),
         ..monthly_days.map(day => [#day.display("[day padding:none]")]),
         stroke: (x, y) => if y != 0 {
