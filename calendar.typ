@@ -1,5 +1,12 @@
-#let calendar(year: "", body) = {
+#let calendar(
+  year: datetime.today().year(),
+  weekstart_is_monday: true,
+  body,
+) = {
   set document(title: str(year) + " calendar")
+  let weekstart = if weekstart_is_monday { "monday" } else { "sunday" }
+  let weekday_headers = ([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday])
+  if not weekstart_is_monday { weekday_headers.insert(0, weekday_headers.pop()) }
 
   for month in range(1, 13) [
 
@@ -26,9 +33,7 @@
       ]
     ]
 
-    #let first_monday = {
-      int(monthly_days.first().display("[weekday repr:monday]"))
-    }
+    #let first_weekstart = int(monthly_days.first().display("[weekday repr:" + weekstart + "]"))
 
     #show table.cell.where(y: 0): strong
     #pad(
@@ -37,8 +42,8 @@
         columns: (1fr,) * 7,
         rows: (0.4fr,) + 5 * (1fr,),
         inset: 0.8em,
-        table.header([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday]),
-        ..range(1, first_monday).map(empty_day => []),
+        table.header(..weekday_headers),
+        ..range(1, first_weekstart).map(empty_day => []),
         ..monthly_days.map(day => [#day.display("[day padding:none]")]),
         stroke: (x, y) => if y != 0 {
           (thickness: 1.5pt)
