@@ -32,7 +32,7 @@
     #let first_weekstart = {
       int(monthly_days.first().display("[weekday repr:" + weekstart + "]"))
     }
-    
+
     #show table.cell.where(y: 0): strong
     #pad(
       y: 5%,
