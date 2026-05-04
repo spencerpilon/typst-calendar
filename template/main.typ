@@ -1,4 +1,4 @@
-#import "@preview/october:1.0.1": calendar
+#import "../calendar.typ": calendar
 
 #set page(
   "a4",
@@ -9,4 +9,5 @@
 
 #show: calendar.with(
   year: datetime.today().year(),
-)
+  weekstart_is_monday: true,
+  )
