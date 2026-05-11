@@ -1,4 +1,5 @@
-#let calendar(year: "", weekstart_is_monday: true, body) = {
+#let calendar(year: datetime.today().year(), weekstart_is_monday: true, body) = {
+  assert(type(year) == int, message: "Year must be an integer")
   set document(title: str(year) + " calendar")
   let weekstart = if weekstart_is_monday { "monday" } else { "sunday" }
   let weekday_headers = ([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday])
