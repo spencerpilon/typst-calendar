@@ -8,6 +8,6 @@
 #set text(size: 14pt)
 
 #show: calendar.with(
-  year: datetime.today().year(),
+  year: 2000,
   weekstart_is_monday: true,
-  )
+)
